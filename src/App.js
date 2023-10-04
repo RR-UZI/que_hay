@@ -28,10 +28,8 @@ const App = () => {
     }, [])
 
     useEffect(() => {
-        const filteredPlaces = places.filter((place) => place.rating > rating);
-
+        const filteredPlaces = places.filter((place) => Number(place.rating) > rating);
         setFilteredPlaces(filteredPlaces);
-
     }, [rating])
 
     useEffect(() => {
@@ -39,11 +37,12 @@ const App = () => {
         setIsLoading(true);
         getPlacesData(type, bounds.sw, bounds.ne)
             .then((data) => {
-
+                
                 setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
                 setFilteredPlaces([]);
+                setRating('');
                 setIsLoading(false);
-            })
+            });
         }
     }, [type, bounds]);
     return (
@@ -63,7 +62,7 @@ const App = () => {
                     />
 
                 </Grid>
-                <Grid item xs={12} md={8}>
+                <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Map
                         setCoordinates={setCoordinates}
                         setBounds={setBounds}

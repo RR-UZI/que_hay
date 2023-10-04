@@ -11,7 +11,7 @@ import useStyles from './styles';
 const PlaceDetails = ({place, selected, refProp}) => {
     const classes = useStyles();
 
-    if(selected) refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    if(selected) refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
     return (
         <Card elevation={6}>
@@ -56,7 +56,7 @@ const PlaceDetails = ({place, selected, refProp}) => {
                 )}
                 <CardActions>
                     <Button size="small" color="primary" onClick={() => window.open(place.web_url, '_blanck')}>
-                        Que HAY
+                        Trip Advisor
                     </Button>
                     <Button size="small" color="primary" onClick={() => window.open(place.website, '_blanck')}>
                         Website
